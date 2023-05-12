@@ -23,7 +23,7 @@ class TestCSVParser(unittest.TestCase):
     def test_valid_csv(self):
         """Test method to validate the valid_csv method executes as expected"""
         valid_csv_path = str(resouce_path) + r'\valid.csv'
-        fail_msg = '%s does not exist', valid_csv_path
+        fail_msg = '%s is not a csv file', valid_csv_path
         self.assertTrue(self.csv_parser.valid_csv(valid_csv_path), fail_msg)
 
 
