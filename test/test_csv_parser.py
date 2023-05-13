@@ -44,5 +44,23 @@ class TestCSVParser(unittest.TestCase):
         fail_msg = '%s can not be found', remote_url
         self.assertTrue(self.csv_parser.open_url(remote_url).status == 404, fail_msg)
 
+    def test_csv_headers_valid(self):
+        """Test method to validate the csv_parse method returns an the expected column headers
+        neccessary to complete the Sky Take Home Test task. The headers are a follows:
+        - Date
+        - Time
+        - Outside Temperature
+        - Hi Temperature
+        - Low Temperature
+        """
+        remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
+        csv_contents = self.csv_parser.parse_csv(self.csv_parser.open_url(remote_url).readlines())
+        column_headers = ['Date', 'Time', 'Outside Temperature', 'Hi Temperature', 'Low Temperature']
+        fails = -12  # There 17 column headings in http://www.fifeweather.co.uk/cowdenbeath/200606.csv but only 5 needed therefore -12 + 12 none needed headings == 0 
+        for i in csv_contents[0]:
+            if i not in column_headers:
+                fails += 1
+        fail_msg = "missing column header(s) from %s", remote_url
+        self.assertTrue(fails == 0, fail_msg)
 if __name__ == "__main__":
     unittest.main()
