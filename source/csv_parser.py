@@ -101,3 +101,20 @@ class CSVParser():
                 max_count = time_list.count(i)
 
         return max_time
+
+    def top_ten_temps(self, database_path):
+        """Method to calculate the top ten hottest times on distinct days"""
+        connection = sqlite3.connect('weather_data.db')
+        cursor = connection.cursor()
+        # SQL query returns a list of Date, Time and outside temperatures sorted descending order of outside temperatures 
+        cursor.execute("""SELECT Date,Time, MAX(Outside_Temperature)
+                        FROM weather_data
+                        GROUP BY Date
+                        ORDER BY
+                        Outside_temperature DESC""")
+        rows = cursor.fetchall()
+        connection.close()
+        top_ten_temps = []
+        for row in rows[0:10]:
+            top_ten_temps.append(row)
+        return top_ten_temps
