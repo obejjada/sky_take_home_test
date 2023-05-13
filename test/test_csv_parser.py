@@ -56,11 +56,15 @@ class TestCSVParser(unittest.TestCase):
         remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
         csv_contents = self.csv_parser.parse_csv(self.csv_parser.open_url(remote_url).readlines())
         column_headers = ['Date', 'Time', 'Outside Temperature', 'Hi Temperature', 'Low Temperature']
-        fails = -12  # There 17 column headings in http://www.fifeweather.co.uk/cowdenbeath/200606.csv but only 5 needed therefore -12 + 12 none needed headings == 0 
-        for i in csv_contents[0]:
-            if i not in column_headers:
+        fails = 0
+        missing_headers = ""
+        for i in column_headers:
+            if i not in csv_contents[0].keys():
                 fails += 1
-        fail_msg = "missing column header(s) from %s", remote_url
+                missing_headers += i + ', '
+        fail_msg = "missing column header(s) : %s from %s", missing_headers, remote_url
         self.assertTrue(fails == 0, fail_msg)
+
+
 if __name__ == "__main__":
     unittest.main()
