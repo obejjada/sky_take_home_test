@@ -40,8 +40,8 @@ class CSVParser():
             Temp_Humidity_Index text,
             Outside_Temperature real,
             WindChill text,
-            Hi_Temperature text,
-            Low_Temperature text,
+            Hi_Temperature real,
+            Low_Temperature real,
             Outside_Humidity text,
             DewPoint text,
             WindSpeed text,
@@ -118,3 +118,34 @@ class CSVParser():
         for row in rows[0:10]:
             top_ten_temps.append(row)
         return top_ten_temps
+
+    def hi_low_temps(self, database_path):
+        """Method to calculate the outside where the Hi Temperature is +- 1 degree of 22.3 or
+        the Low Temperature is +- 0.2 degrees of 10.3 for the first 9 days of June"""
+
+        connection = sqlite3.connect('weather_data.db')
+        cursor = connection.cursor()
+        # SQL query returns Date, Time and and Hi temperature where the Hi Temperature is +- 1 degree of 22.3
+        cursor.execute("""SELECT Date,Time, Hi_Temperature
+                        FROM weather_data
+                        WHERE Hi_Temperature BETWEEN 21.3 AND 23.3
+                        """)
+        results_1_degree = cursor.fetchall()
+        connection.close()
+
+        connection = sqlite3.connect('weather_data.db')
+        cursor = connection.cursor()
+        # SQL query returns Date, Time and and Lo temperature where the Low Temperature is +- 0.2 degrees from 10.3 in the first 9 days of June
+        cursor.execute("""SELECT Date,Time, Low_Temperature
+                        FROM weather_data
+                        WHERE Low_Temperature BETWEEN 10.1 AND 10.5""")
+        nine_june = cursor.fetchall()
+        connection.close()
+        one_to_nine_june = ['01/06/2006', '02/06/2006', '03/06/2006',
+                            '04/06/2006', '05/06/2006', '06/06/2006',
+                            '07/06/2006', '08/06/2006', '09/06/2006']
+        results_nine_june = []
+        for row in nine_june:
+            if row[0] in one_to_nine_june:
+                results_nine_june.append(row)
+        return results_1_degree, results_nine_june
