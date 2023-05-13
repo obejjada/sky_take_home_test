@@ -1,6 +1,7 @@
 import csv_parser
 import interface
-import sys, os
+import sys
+import os
 sys.path.append("C:\\Users\\omarb\\vscode-workspace\\sky_take_home_test")
 
 
@@ -14,7 +15,7 @@ class SkyTakeHome():
         self.interface.welcome_message()
         csv_url = input('Please enter URL of .csv file\n')
         try:
-            self.csv_parser.valid_csv(csv_url)            
+            self.csv_parser.valid_csv(csv_url)
         except Exception as e:
             print(e)
         output_file_loc = input('Please enter path of where to save output files\n')

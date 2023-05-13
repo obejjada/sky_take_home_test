@@ -1,5 +1,3 @@
-import os
-
 
 class user_interface():
     """Class Method to define user interface and error messages which are called from the command line"""
