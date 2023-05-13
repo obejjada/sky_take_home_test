@@ -13,7 +13,7 @@ class CSVParser():
             return True
         else:
             return False
-    
+
     def open_url(self, url_path):
         """Method to open the remote URL path given"""
         try:
@@ -21,3 +21,12 @@ class CSVParser():
             return response
         except error.HTTPError as e:
             return e
+
+    def parse_csv(self, csv_object):
+        """Method to parse the csv file and return the contents in a list"""
+        lines = [l.decode('utf-8') for l in csv_object]
+        reader = csv.reader(lines)
+        contents = []
+        for row in reader:
+            contents.append(row)
+        return contents
