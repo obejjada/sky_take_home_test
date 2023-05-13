@@ -149,3 +149,39 @@ class CSVParser():
             if row[0] in one_to_nine_june:
                 results_nine_june.append(row)
         return results_1_degree, results_nine_june
+
+    def forecast_july(self, database_path):
+        """Method to forecast the weather for July"""
+        connection = sqlite3.connect('weather_data.db')
+        cursor = connection.cursor()
+        average_list = []
+        july_average = float(25)
+        july_forecast = []
+        for i in range(10):
+            # SQL query returns
+            sql_query = ("""SELECT Date,Time, Outside_Temperature FROM weather_data WHERE Date = '0%s/06/2006'""" % i)
+            cursor.execute(sql_query)
+            rows = cursor.fetchall()
+            total = 0
+            for i in rows:
+                total += float(i[2])
+            if len(rows) > 0:
+                average = total / len(rows)
+                average_list.append(average)
+            for i in rows:
+                perctage_change = ((float(i[2]) - average)/average)
+                month = str(i[0])
+                before = month[0:4]
+                after = month[5:10]
+                merge = str(before) + '7' + str(after)
+                if perctage_change > 0:
+                    july_new_value = july_average * (1 + abs(perctage_change))
+                    print_tup = (str(merge), str(i[1]), str(july_new_value))
+                    july_forecast.append(print_tup)
+                if perctage_change < 0:
+                    july_new_value = july_average * (1 - abs(perctage_change))
+                    print_tup = (str(merge), str(i[1]), str(july_new_value))
+                    july_forecast.append(print_tup)
+
+        connection.close()
+        return july_forecast
