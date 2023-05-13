@@ -1,5 +1,6 @@
 import csv
 import sqlite3
+import datetime
 from urllib import request, error
 from pathlib import Path
 import logging
@@ -37,7 +38,7 @@ class CSVParser():
             Date text,
             Time text,
             Temp_Humidity_Index text,
-            Outside_Temperature text,
+            Outside_Temperature real,
             WindChill text,
             Hi_Temperature text,
             Low_Temperature text,
@@ -53,9 +54,28 @@ class CSVParser():
             ArchivePeriod text)""")
         connection.commit()
 
-        for row in data:
+        for row in data[1:(len(data)-1)]:
             cursor.execute("insert into weather_data VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                            (row[0], row[1], row[1], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
-                                row[10], row[11], row[12], row[13], row[14], row[15], row[16]))
+                           (row[0], row[1], row[1], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+                            row[10], row[11], row[12], row[13], row[14], row[15], row[16]))
         connection.commit()
         connection.close()
+
+    def average_time_hottest_temp(self, database_path):
+        """Method to calculate the average time of the hotest daily temperature over the month"""
+
+        connection = sqlite3.connect('weather_data.db')
+        cursor = connection.cursor()
+        # SQL query returns the Date and Time of the Max outside temperature,for each unique date
+        cursor.execute("SELECT Date,Time, MAX(Outside_Temperature) FROM weather_data GROUP BY Date")
+        rows = cursor.fetchall()
+        connection.close()
+        # Iterate through each Date for the Time the Max outside temperature occured
+        total_time = 0
+        for row in rows:
+            temp_time = row[1].split(':')  # Split string format of time in a new varable to allow multiplication
+            time_to_seconds = (int(temp_time[0]) * 3600) + (int(temp_time[1]) * 60)  # Multiple by 3600 for hours to seconds and Multiple by 60 for mins to seconds
+            total_time += time_to_seconds
+        # Average time is calculated by summing how many hours from 00:00 have elapased before dividing by the number of days and re-convert back into a 24Hr format
+        average_time = str(datetime.timedelta(seconds=total_time/len(rows)))
+        return average_time
