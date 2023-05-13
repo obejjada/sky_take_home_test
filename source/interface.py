@@ -3,4 +3,4 @@ class user_interface():
     def welcome_message(self):
         """Method to display to the user a welcome message and for them to enter the URL to the CSV"""
         print('Welcome to the Sky Take Home Test')
-        print('Please enter URL of .csv file')
+        
