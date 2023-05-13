@@ -26,8 +26,4 @@ class CSVParser():
         """Method to parse the csv file and return the contents in a list"""
         lines = [l.decode('utf-8') for l in csv_object]
         data = list(csv.DictReader(lines))
-        #contents = []
-        #for row in reader:
-         #   contents.append(row)
         return data
-
