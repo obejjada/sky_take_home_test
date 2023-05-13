@@ -34,6 +34,11 @@ class SkyTakeHome():
         except Exception as e:
             print(e)
         try:
+            if os.path.exists(output_file_loc + r"\Question_3_answer.txt"):
+                os.remove(output_file_loc + r"\Question_3_answer.txt")
+        except Exception as e:
+            print(e)
+        try:
             data_object = self.csv_parser.parse_csv(self.csv_parser.open_url(csv_url))
             self.csv_parser.import_data_to_sql(data_object)
         except Exception as e:
@@ -52,6 +57,10 @@ class SkyTakeHome():
             print(e)
         try:
             self.interface.write_q_two_file(self.csv_parser.hi_low_temps(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
+        except Exception as e:
+            print(e)
+        try:
+            self.interface.write_q_three_file(self.csv_parser.forecast_july(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
             print(e)
         self.interface.closing_message(output_file_loc)
