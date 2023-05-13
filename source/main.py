@@ -29,7 +29,7 @@ class SkyTakeHome():
         except Exception as e:
             print(e)
         try:
-            print(self.csv_parser.common_time_hotest(str(os.getcwd()) + r'\weather_data.db'))
+            self.interface.write_q_one_b_file(self.csv_parser.common_time_hotest(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
             print(e)
         try:
