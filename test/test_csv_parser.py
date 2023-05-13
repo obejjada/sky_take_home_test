@@ -32,6 +32,17 @@ class TestCSVParser(unittest.TestCase):
         fail_msg = '%s is not a csv file', invalid_csv_path
         self.assertFalse(self.csv_parser.valid_csv(invalid_csv_path), fail_msg)
 
+    def test_open_url(self):
+        """Test method to validate the open_url method returns an HTTP status of 200 for a valid URL"""
+        remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
+        fail_msg = '%s has not opened', remote_url
+        self.assertTrue(self.csv_parser.open_url(remote_url) == 200, fail_msg)
+
+    def test_open_bad_url(self):
+        """Test method to validate the open_url method returns an HTTP status of 404 for an invalid URL"""
+        remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/1.csv'
+        fail_msg = '%s can not be found', remote_url
+        self.assertTrue(self.csv_parser.open_url(remote_url) == 404, fail_msg)
 
 if __name__ == "__main__":
     unittest.main()
