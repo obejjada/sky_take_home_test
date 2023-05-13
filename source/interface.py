@@ -47,3 +47,8 @@ class user_interface():
         for i in answers[1]:
             f.write(str(i) + '\n')
         f.close()
+
+    def closing_message(self, location):
+        """Method to write a final message to the user signalling the end of the program"""
+        print("Output files written to %s\n" % location)
+        print('Thanks for using Sky Take Home Test program :)\n')
