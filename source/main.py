@@ -23,8 +23,9 @@ class SkyTakeHome():
             self.csv_parser.import_data_to_sql(data_object)
         except Exception as e:
             print(e)
+        output_file_loc = input('Please enter path of where to save output files\n')
         try:
-            print(self.csv_parser.average_time_hottest_temp(str(os.getcwd()) + r'\weather_data.db'))
+            self.interface.write_q_one_a_file(self.csv_parser.average_time_hottest_temp(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
             print(e)
         try:
