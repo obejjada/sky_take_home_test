@@ -37,9 +37,8 @@ class SkyTakeHome():
         except Exception as e:
             print(e)
         try:
-            print(self.csv_parser.hi_low_temps(str(os.getcwd()) + r'\weather_data.db'))
+            self.interface.write_q_two_file(self.csv_parser.hi_low_temps(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
             print(e)
-
 if __name__ == "__main__":
     SkyTakeHome().main()

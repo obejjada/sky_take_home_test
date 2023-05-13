@@ -34,3 +34,16 @@ class user_interface():
         for i in answers:
             f.write(str(i) + '\n')
         f.close()
+
+    def write_q_two_file(self, answers, location):
+        """Method to write the answers for question 2"""
+        file_name = str(location) + r'\Question_2_answer.txt'
+        f = open(file_name, "a")
+        f.write('Question 2)\n')
+        f.write('Hi Temperature that are +- 1 degree from 22.3)\n')
+        for i in answers[0]:
+            f.write(str(i) + '\n')
+        f.write('Low Temperature that are +- 0.2 degrees from 10.3 in the first 9 days of June)\n')
+        for i in answers[1]:
+            f.write(str(i) + '\n')
+        f.close()
