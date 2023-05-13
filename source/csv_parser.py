@@ -1,4 +1,5 @@
 import csv
+from urllib import request, error
 from pathlib import Path
 import logging
 
@@ -12,3 +13,11 @@ class CSVParser():
             return True
         else:
             return False
+    
+    def open_url(self, url_path):
+        """Method to open the remote URL path given"""
+        try:
+            response = request.urlopen(url_path)
+            return response.status
+        except error.HTTPError as e:
+            return e.status
