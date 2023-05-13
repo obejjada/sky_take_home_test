@@ -17,13 +17,27 @@ class SkyTakeHome():
             self.csv_parser.valid_csv(csv_url)            
         except Exception as e:
             print(e)
-
+        output_file_loc = input('Please enter path of where to save output files\n')
+        try:
+            if os.path.exists(output_file_loc + r"\weather_data.db"):
+                os.remove(output_file_loc + r"\weather_data.db")
+        except Exception as e:
+            print(e)
+        try:
+            if os.path.exists(output_file_loc + r"\Question_1_answer.txt"):
+                os.remove(output_file_loc + r"\Question_1_answer.txt")
+        except Exception as e:
+            print(e)
+        try:
+            if os.path.exists(output_file_loc + r"\Question_2_answer.txt"):
+                os.remove(output_file_loc + r"\Question_2_answer.txt")
+        except Exception as e:
+            print(e)
         try:
             data_object = self.csv_parser.parse_csv(self.csv_parser.open_url(csv_url))
             self.csv_parser.import_data_to_sql(data_object)
         except Exception as e:
             print(e)
-        output_file_loc = input('Please enter path of where to save output files\n')
         try:
             self.interface.write_q_one_a_file(self.csv_parser.average_time_hottest_temp(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
