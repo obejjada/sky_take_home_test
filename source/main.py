@@ -33,7 +33,7 @@ class SkyTakeHome():
         except Exception as e:
             print(e)
         try:
-            print(self.csv_parser.top_ten_temps(str(os.getcwd()) + r'\weather_data.db'))
+            self.interface.write_q_one_c_file(self.csv_parser.top_ten_temps(str(os.getcwd()) + r'\weather_data.db'), output_file_loc)
         except Exception as e:
             print(e)
         try:
