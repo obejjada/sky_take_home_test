@@ -1,8 +1,10 @@
-import csv_parser
-import interface
 import sys
 import os
-sys.path.append("C:\\Users\\omarb\\vscode-workspace\\sky_take_home_test")
+
+sys.path.append(str(os.path.realpath('..')) + r'\sky_take_home_test')
+print(sys.path)
+import csv_parser
+import interface
 
 
 class SkyTakeHome():
