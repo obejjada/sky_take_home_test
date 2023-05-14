@@ -1,8 +1,7 @@
 import sys
 import os
 
-sys.path.append(str(os.path.realpath('..')) + r'/take_home_test')
-print(sys.path)
+sys.path.append(str(os.path.realpath('.')) + r'/take_home_test')
 import csv_parser
 import interface
 
@@ -19,8 +18,8 @@ class TakeHome():
         try:
             self.csv_parser.valid_csv(csv_url)
             output_file_loc = input('Please enter path of where to save output files\n')
-            if os.path.exists(output_file_loc + r"\weather_data.db"):
-                os.remove(output_file_loc + r"\weather_data.db")
+            if os.path.exists(str(os.path.realpath('.')) + r'/take_home_test' + r'/source' + r"\weather_data.db"):
+                os.remove(str(os.path.realpath('.')) + r'/take_home_test' + r'/source' + r"\weather_data.db")
             if os.path.exists(output_file_loc + r"/Question_1_answer.txt"):
                 os.remove(output_file_loc + r"/Question_1_answer.txt")
             if os.path.exists(output_file_loc + r"/Question_2_answer.txt"):

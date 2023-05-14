@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(str(os.path.realpath('..')) + r'/take_home_test')
+sys.path.append(str(os.path.realpath('.')) + r'/take_home_test')
 import unittest
 from source.csv_parser import CSVParser
 from pathlib import Path
@@ -48,7 +48,7 @@ class TestCSVParser(unittest.TestCase):
 
     def test_csv_headers_valid(self):
         """Test method to validate the csv_parse method returns an the expected column headers
-        neccessary to complete the Sky Take Home Test task. The headers are a follows:
+        neccessary to complete the Take Home Test task. The headers are a follows:
         - Date
         - Time
         - Outside Temperature
@@ -73,7 +73,7 @@ class TestCSVParser(unittest.TestCase):
         open_url = self.csv_parser.open_url(remote_url)
         parse_csv = self.csv_parser.parse_csv(open_url)
         self.csv_parser.import_data_to_sql(parse_csv)
-        answer = self.csv_parser.average_time_hottest_temp(r"c:\Users\omarb\vscode-workspace\sky_take_home_test\weather_data.db")
+        answer = self.csv_parser.average_time_hottest_temp(r"c:\Users\omarb\vscode-workspace\take_home_test\weather_data.db")
         fail_msg = "average calculated hottest times does not match"
         self.assertTrue(answer == "13:18:07.500000", fail_msg )
     
@@ -83,7 +83,7 @@ class TestCSVParser(unittest.TestCase):
         open_url = self.csv_parser.open_url(remote_url)
         parse_csv = self.csv_parser.parse_csv(open_url)
         self.csv_parser.import_data_to_sql(parse_csv)
-        answer = self.csv_parser.common_time_hotest(r"c:\Users\omarb\vscode-workspace\sky_take_home_test\weather_data.db")
+        answer = self.csv_parser.common_time_hotest(r"c:\Users\omarb\vscode-workspace\take_home_test\weather_data.db")
         fail_msg = "Common calculated hottest time does not match"
         self.assertTrue(answer == "13:00", fail_msg )
 
