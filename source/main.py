@@ -1,14 +1,14 @@
 import sys
 import os
 
-sys.path.append(str(os.path.realpath('..')) + r'/sky_take_home_test')
+sys.path.append(str(os.path.realpath('..')) + r'/take_home_test')
 print(sys.path)
 import csv_parser
 import interface
 
 
-class SkyTakeHome():
-    """Main class for the Sky take home test"""
+class TakeHome():
+    """Main class for the take home test"""
     interface = interface.user_interface()
     csv_parser = csv_parser.CSVParser()
 
@@ -38,4 +38,4 @@ class SkyTakeHome():
             print(e)
         self.interface.closing_message(output_file_loc)
 if __name__ == "__main__":
-    SkyTakeHome().main()
+    TakeHome().main()

@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(str(os.path.realpath('..')) + r'/sky_take_home_test')
+sys.path.append(str(os.path.realpath('..')) + r'/take_home_test')
 import unittest
 from source.csv_parser import CSVParser
 from pathlib import Path
@@ -11,7 +11,7 @@ resouce_path = Path.cwd()
 
 
 class TestCSVParser(unittest.TestCase):
-    """Unit test class that will verfiy the CSV parsing functions of the sky-take-home projects"""
+    """Unit test class that will verfiy the CSV parsing functions of the take-home projects"""
     csv_parser = CSVParser()
 
     def setUp(self):

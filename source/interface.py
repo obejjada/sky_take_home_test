@@ -3,7 +3,7 @@ class user_interface():
     """Class Method to define user interface and error messages which are called from the command line"""
     def welcome_message(self):
         """Method to display to the user a welcome message and for them to enter the URL to the CSV"""
-        print('Welcome to the Sky Take Home Test')
+        print('Welcome to the Take Home Test')
 
     def write_q_one_a_file(self, answers, location):
         """Method to write the answers for question 1 part a to .txt file"""
@@ -59,4 +59,4 @@ class user_interface():
     def closing_message(self, location):
         """Method to write a final message to the user signalling the end of the program"""
         print("Output files written to %s\n" % location)
-        print('Thanks for using Sky Take Home Test program :)\n')
+        print('Thanks for using Take Home Test program :)\n')
