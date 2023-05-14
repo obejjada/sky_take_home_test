@@ -12,20 +12,25 @@ class CSVParser():
     def valid_csv(self, file_path):
         """Method to validate whether the input file is a CSV file or not"""
         if Path(file_path).suffix == '.csv':
+            #  return true if the extension is valid .csv
             return True
         else:
+            # return can be used to flag to user that the file they have inputed does not have a .csv extension 
             return False
 
     def open_url(self, url_path):
         """Method to open the remote URL path given"""
         try:
             response = request.urlopen(url_path)
+            #  response return allows this function to be used for more than returning http status
             return response
         except error.HTTPError as e:
+            #  If unable to open the given url, return the http error staus
             return e
 
     def parse_csv(self, csv_object):
         """Method to parse the csv file and return the contents in a list"""
+        #  Decode the url and make a list which will be used to parse the data into a database
         lines = [l.decode('utf-8') for l in csv_object]
         data = list(csv.reader(lines))
         return data
