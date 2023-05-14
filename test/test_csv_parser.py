@@ -1,8 +1,11 @@
+import sys
+import os
+sys.path.append(str(os.path.realpath('..')) + r'\sky_take_home_test')
 import unittest
 from source.csv_parser import CSVParser
 from pathlib import Path
-import sys
-sys.path.append("C:\\Users\\omarb\\vscode-workspace\\sky_take_home_test")
+
+
 
 resouce_path = Path.cwd()
 
@@ -75,6 +78,7 @@ class TestCSVParser(unittest.TestCase):
         self.assertTrue(answer == "13:18:07.500000", fail_msg )
     
     def test_common_time_hotest(self):
+        """Test method to verify the test_common_time_hotest method returns the correct common time"""
         remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
         open_url = self.csv_parser.open_url(remote_url)
         parse_csv = self.csv_parser.parse_csv(open_url)
