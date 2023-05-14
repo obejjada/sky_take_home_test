@@ -7,7 +7,7 @@ class user_interface():
 
     def write_q_one_a_file(self, answers, location):
         """Method to write the answers for question 1 part a to .txt file"""
-        file_name = str(location) + r'\Question_1_answer.txt'
+        file_name = str(location) + r'/Question_1_answer.txt'
         f = open(file_name, "a")
         f.write('Question 1)\n')
         f.write('a) ')
@@ -16,7 +16,7 @@ class user_interface():
 
     def write_q_one_b_file(self, answers, location):
         """Method to write the answers for question 1 part b to .txt file"""
-        file_name = str(location) + r'\Question_1_answer.txt'
+        file_name = str(location) + r'/Question_1_answer.txt'
         f = open(file_name, "a")
         f.write('Question 1)\n')
         f.write('b) ')
@@ -25,7 +25,7 @@ class user_interface():
 
     def write_q_one_c_file(self, answers, location):
         """Method to write the answers for question 1 part c to .txt file"""
-        file_name = str(location) + r'\Question_1_answer.txt'
+        file_name = str(location) + r'/Question_1_answer.txt'
         f = open(file_name, "a")
         f.write('Question 1)\n')
         f.write('c)\n')
@@ -35,7 +35,7 @@ class user_interface():
 
     def write_q_two_file(self, answers, location):
         """Method to write the answers for question 2 to .txt file"""
-        file_name = str(location) + r'\Question_2_answer.txt'
+        file_name = str(location) + r'/Question_2_answer.txt'
         f = open(file_name, "a")
         f.write('Question 2)\n')
         f.write('Hi Temperature that are +- 1 degree from 22.3)\n')
@@ -48,7 +48,7 @@ class user_interface():
 
     def write_q_three_file(self, answers, location):
         """Method to write the asnwers for question 3 to .txt file"""
-        file_name = str(location) + r'\Question_3_answer.txt'
+        file_name = str(location) + r'/Question_3_answer.txt'
         f = open(file_name, "a")
         f.write('Question 3)\n')
         f.write('Forecast July temperatures\n')

@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(str(os.path.realpath('..')) + r'\sky_take_home_test')
+sys.path.append(str(os.path.realpath('..')) + r'/sky_take_home_test')
 import unittest
 from source.csv_parser import CSVParser
 from pathlib import Path
@@ -24,13 +24,13 @@ class TestCSVParser(unittest.TestCase):
 
     def test_valid_csv(self):
         """Test method to validate the valid_csv method returns True when a CSV file path is given"""
-        valid_csv_path = str(resouce_path) + r'\valid.csv'
+        valid_csv_path = str(resouce_path) + r'/valid.csv'
         fail_msg = '%s is not a csv file', valid_csv_path
         self.assertTrue(self.csv_parser.valid_csv(valid_csv_path), fail_msg)
 
     def test_invalid_csv(self):
         """Test method to validate the valid_csv method returns False when a none CSV file path is given"""
-        invalid_csv_path = str(resouce_path) + r'\invalid.txt'
+        invalid_csv_path = str(resouce_path) + r'/invalid.txt'
         fail_msg = '%s is not a csv file', invalid_csv_path
         self.assertFalse(self.csv_parser.valid_csv(invalid_csv_path), fail_msg)
 
