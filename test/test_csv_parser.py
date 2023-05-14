@@ -71,8 +71,17 @@ class TestCSVParser(unittest.TestCase):
         parse_csv = self.csv_parser.parse_csv(open_url)
         self.csv_parser.import_data_to_sql(parse_csv)
         answer = self.csv_parser.average_time_hottest_temp(r"c:\Users\omarb\vscode-workspace\sky_take_home_test\weather_data.db")
-        fail_msg = "average calculated hottest timeS does not match"
+        fail_msg = "average calculated hottest times does not match"
         self.assertTrue(answer == "13:18:07.500000", fail_msg )
+    
+    def test_common_time_hotest(self):
+        remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
+        open_url = self.csv_parser.open_url(remote_url)
+        parse_csv = self.csv_parser.parse_csv(open_url)
+        self.csv_parser.import_data_to_sql(parse_csv)
+        answer = self.csv_parser.common_time_hotest(r"c:\Users\omarb\vscode-workspace\sky_take_home_test\weather_data.db")
+        fail_msg = "Common calculated hottest time does not match"
+        self.assertTrue(answer == "13:00", fail_msg )
 
 
 if __name__ == "__main__":
