@@ -4,12 +4,12 @@ Take home test for Sky Python Software Developer job<br/>
 # Purpose
 Python script to input weather data from .csv and output requested data in the form of .txt files<br/>
 
-# prerequisites
+# Prerequisites
 1) Ability to run python from host machine<br/>
 2) Ability to clone project from GitHub to host machine<br/>
 
 # Technologies used
-Python 3.10.11<br/>
+1) Python 3.10.11<br/>
 All librries used are standard python libaries therefore no install of extra dependancies is neccessary<br/>
 
 # How to run script
