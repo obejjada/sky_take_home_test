@@ -1,9 +1,8 @@
 import unittest
-import sys
-sys.path.append("C:\\Users\\omarb\\vscode-workspace\\sky_take_home_test")
 from source.csv_parser import CSVParser
 from pathlib import Path
-
+import sys
+sys.path.append("C:\\Users\\omarb\\vscode-workspace\\sky_take_home_test")
 
 resouce_path = Path.cwd()
 
@@ -64,6 +63,16 @@ class TestCSVParser(unittest.TestCase):
                 missing_headers += i + ', '
         fail_msg = "missing column header(s) : %s from %s", missing_headers, remote_url
         self.assertTrue(fails == 0, fail_msg)
+
+    def test_average_time_hottest_temp(self):
+        """Test method to verify the average_time_hottest_temp method returns the correct value"""
+        remote_url = 'http://www.fifeweather.co.uk/cowdenbeath/200606.csv'
+        open_url = self.csv_parser.open_url(remote_url)
+        parse_csv = self.csv_parser.parse_csv(open_url)
+        self.csv_parser.import_data_to_sql(parse_csv)
+        answer = self.csv_parser.average_time_hottest_temp(r"c:\Users\omarb\vscode-workspace\sky_take_home_test\weather_data.db")
+        fail_msg = "average calculated hottest timeS does not match"
+        self.assertTrue(answer == "13:18:07.500000", fail_msg )
 
 
 if __name__ == "__main__":
