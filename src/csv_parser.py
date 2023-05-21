@@ -22,7 +22,8 @@ class CSVParser():
         """Method to open the remote URL path given"""
         try:
             response = request.urlopen(url_path)
-            #  response return allows this function to be used for more than returning http status
+            #  response return allows this function to be used for more than returning
+            #  http status
             return response
         except error.HTTPError as e:
             #  If unable to open the given url, return the http error staus
